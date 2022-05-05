@@ -38,12 +38,25 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.img {
+    width: 100%;
+    height: auto;
 }
 
 .topBar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 15px;
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #D8D8D8;
+    background: #fff;
+    z-index: 5;
 }
 
 .topBar__right {
@@ -72,6 +85,12 @@ ul {
 
 .topBar__link:hover {
     opacity: .8;
+}
+
+.topHeader {
+    margin-top: 60px;
+    z-index: 4;
+    position: relative;
 }
 
 .topHeader__logoWrapper {
@@ -106,6 +125,11 @@ ul {
     border: 2px solid #D8D8D8;
     outline: none;
     padding: 5px 20px;
+    transition: .2s all;
+}
+
+.input:focus {
+    border-color: #5A257F;
 }
 
 .topHeader__search .input {
@@ -194,8 +218,16 @@ ul {
     position: absolute;
     top: 0;
     left: 0;
-    width: 300px;
+    width: 100%;
     height: auto;
+    z-index: -1;
+    opacity: 0;
+    transition: .4s all;
+}
+
+.slider__item--0 {
+    opacity: 1;
+    z-index: 3;
 }
 
 .slider__controls {
@@ -270,6 +302,10 @@ ul {
 
 .product:hover {
     border-color: rgba(90, 37, 127, .7);
+}
+
+.product > .flex {
+    align-items: flex-start;
 }
 
 .product__imgWrapper {
@@ -354,6 +390,9 @@ ul {
     background: rgba(0, 0, 0, .5);
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .bigImage__content * {
@@ -366,7 +405,6 @@ ul {
 
 .bigImage__header {
     font-size: 36px;
-    margin-top: 12%;
 }
 
 .bigImage__subheader {
@@ -509,6 +547,7 @@ ul {
 
 .footer__col__logoWrapper {
     width: 160px;
+    display: block;
 }
 
 .footer__col__logoWrapper .img {
@@ -549,6 +588,11 @@ ul {
     display: block;
 }
 
+.footer__bottom a:hover,
+.footer__col__link:hover {
+    opacity: .8;
+}
+
 .footer__col__text > span {
     display: block;
 }
@@ -564,8 +608,14 @@ ul {
 .socialMedia {
     width: 20px;
     margin-right: 20px;
+    opacity: .8;
+}
+
+.socialMedia:hover {
+    opacity: 1;
 }
 
 .socialMediaWrapper {
     justify-content: flex-start;
 }
+

@@ -95,19 +95,19 @@
         </figure>
 
         <div class="slider__controls flex">
-            <button class="slider__controls__item slider__prev">
+            <button class="slider__controls__item slider__prev" onclick="prevSlide()">
                 <img class="img" src="./img/next.svg" alt="poprzedni" />
             </button>
-            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--0">
+            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--0" onclick="goToSlide(0)">
 
             </button>
-            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--1">
+            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--1" onclick="goToSlide(1)">
 
             </button>
-            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--2">
+            <button class="slider__controls__item slider__controls__item--dot slider__controls__item--dot--2" onclick="goToSlide(2)">
 
             </button>
-            <button class="slider__controls__item slider__next">
+            <button class="slider__controls__item slider__next" onclick="nextSlide()">
                 <img class="img" src="./img/next.svg" alt="nastepny" />
             </button>
         </div>
@@ -472,7 +472,7 @@
                 &copy; 2022 Meta Human
             </h6>
             <h6 class="footer__bottom__header">
-                Projekt i wykonanie: <a href="https://skylo.pl">skylo.pl</a>
+                Projekt i wykonanie: <a href="https://skylo.pl" target="_blank" rel="noreferrer">skylo.pl</a>
             </h6>
         </aside>
     </footer>
