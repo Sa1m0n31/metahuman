@@ -136,6 +136,10 @@
     .footer__col__text {
         text-align: center;
     }
+
+    .section--bigImage {
+        height: 300px;
+    }
 }
 
 @media(max-width: 996px) {
@@ -163,12 +167,184 @@
 }
 
 @media(max-width: 776px) {
+    .d-desktop {
+        display: none !important;
+    }
+
+    .d-mobile {
+        display: block !important;
+    }
+
     .icons__item {
         width: 100%;
     }
 
     .section__header--plain {
         text-align: center;
+    }
+
+    .topBar--mobile {
+        width: 100%;
+        padding: 20px 5%;
+        border-bottom: none;
+        z-index: 15;
+    }
+
+    .topBar__btn {
+        background: transparent;
+        width: 25px;
+    }
+
+    .topBar--mobile__header {
+        width: 100%;
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        padding: 10px 0;
+        margin-top: 15px;
+    }
+
+    .slider {
+        margin-top: 130px;
+    }
+
+    .topBar__logoWrapper {
+        width: 144px;
+    }
+
+    .section__header {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .section--bigImage {
+        height: 180px;
+    }
+
+    .bigImage__content {
+        width: 100%;
+        align-items: center;
+    }
+
+    .bigImage__content > * {
+        margin-left: 0;
+    }
+
+    .bigImage__subheader {
+        text-align: center;
+        font-size: 12px;
+        margin: 10px 0 18px;
+    }
+
+    .bigImage__btn {
+        font-size: 12px;
+        width: 220px;
+        height: 35px;
+    }
+
+    .bigImage__header {
+        font-size: 14px;
+    }
+
+    .mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        z-index: 100;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: scaleX(0);
+        transform-origin: top left;
+    }
+
+    .mobileMenu, .mobileMenu > * {
+        transition: .3s all;
+        font-size: 15px;
+    }
+
+    .mobileMenu > * {
+        opacity: 0;
+    }
+
+    .mobileMenu__logoWrapper {
+        width: 190px;
+        margin-bottom: 50px;
+        margin-top: -10vh;
+        display: block;
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 20px;
+        height: auto;
+    }
+
+    .mobileMenu__list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobileMenu__list .topHeader__menu__submenu {
+        visibility: visible;
+        opacity: 1;
+        z-index: 3;
+        border: none;
+        position: relative;
+        top: unset;
+        left: unset;
+        padding: 0;
+    }
+
+    .mobileMenu__list,
+    .mobileMenu__list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobileMenu .topHeader__menu__item:first-of-type {
+        padding: 0;
+    }
+
+    .mobileMenu__list .topHeader__menu__item {
+        padding: 10px 0;
+        border-bottom: 1px solid #D8D8D8;
+    }
+
+    .mobileMenu__list .topHeader__menu__item__link {
+        font-weight: 400;
+        text-transform: none;
+    }
+
+    .mobileMenu__list .topHeader__menu__submenu__item__link {
+        text-transform: none;
+    }
+
+    .mobileMenu__header {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #D8D8D8;
+        border-top: 1px solid #D8D8D8;
+    }
+
+    .mobileMenu a {
+        font-size: 15px;
+    }
+
+    .topHeader__menu__submenu::before {
+        display: none;
     }
 }
 
@@ -196,5 +372,46 @@
 
     .footer__col__link {
         margin: 3px 0;
+    }
+
+    .product__imgWrapper {
+        width: 100px;
+        height: 125px;
+    }
+
+    .product__right {
+        width: calc(100% - 120px);
+    }
+
+    .blog__title,
+    .product__name {
+        font-size: 14px;
+    }
+
+    .product__price {
+        font-size: 17px;
+        margin: 5px 0;
+    }
+
+    .product--blog .product__addToCartBtn {
+        height: 35px;
+    }
+
+    .blog__excerpt,
+    .product__desc {
+        font-size: 12px;
+    }
+
+    .blog__title {
+        margin: 8px 0;
+    }
+
+    .product__addToCartBtn {
+        font-size: 14px;
+    }
+
+    .blog__imgWrapper {
+        height: auto;
+        margin-bottom: 10px;
     }
 }

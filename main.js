@@ -1,3 +1,4 @@
+/* SLIDER */
 let currentSlide = 0;
 
 const sliderItems = Array.from(document.querySelectorAll('.slider__item'));
@@ -44,4 +45,26 @@ const goToSlide = (n) => {
     currentSlide = n;
 
     switchSlides(oldSlide, currentSlide);
+}
+
+/* MOBILE MENU */
+const mobileMenu = document.querySelector('.mobileMenu');
+const mobileMenuChildren = Array.from(document.querySelectorAll('.mobileMenu>*'));
+
+const openMobileMenu = () => {
+    mobileMenu.style.transform = 'scaleX(1)';
+    setTimeout(() => {
+        mobileMenuChildren.forEach((item) => {
+           item.style.opacity = '1';
+        });
+    }, 300);
+}
+
+const closeMobileMenu = () => {
+    mobileMenuChildren.forEach(((item) => {
+        item.style.opacity = '0';
+    }));
+    setTimeout(() => {
+        mobileMenu.style.transform = 'scaleX(0)';
+    }, 300);
 }
