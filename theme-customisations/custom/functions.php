@@ -217,69 +217,51 @@ function metahuman_homepage() {
             Bestsellery
         </h2>
         <div class="flex">
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
+
+            <?php
+            $loop = new WP_Query( array(
+                'post_type' => 'product',
+                'post_status' => 'publish',
+                'posts_per_page' => 3,
+                'product_cat' => 'bestsellery'
+            ));
+            if($loop->have_posts()) {
+                while($loop->have_posts()) {
+                    $loop->the_post();
+                    global $product;
+                    ?>
+                    <div class="product">
+                        <a class="flex" href="<?php echo get_permalink( $product->get_id() ); ?>">
+                            <figure class="product__imgWrapper">
+                                <img class="img" src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" alt="produkt" />
+                            </figure>
+                            <div class="product__right">
+                                <h3 class="product__name">
+                                    <?php echo the_title(); ?>
+                                </h3>
+                                <h4 class="product__price">
+                                    <?php echo $product->get_price_html(); ?>
+                                </h4>
+                                <p class="product__desc">
+                                    <?php
+                                        $full_excerpt = $product->get_short_description();
+                                        if(strlen($full_excerpt) > 100) {
+                                            echo substr($full_excerpt, 0, 100) . '...';
+                                        }
+                                        else {
+                                            echo $full_excerpt;
+                                        }
+                                    ?>
+                                </p>
+                            </div>
+                        </a>
+                        <?php woocommerce_template_loop_add_to_cart($loop->post, $product); ?>
                     </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
-                    </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
-                    </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
+                    <?php
+                }
+                wp_reset_postdata();
+            }
+            ?>
         </div>
     </section>
 
@@ -377,51 +359,47 @@ function metahuman_homepage() {
             Ostatnie wpisy na blogu
         </h4>
         <div class="flex">
-            <a href="" class="product product--blog">
-                <figure class="blog__imgWrapper">
-                    <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/blog.png'; ?>" alt="blog" />
-                </figure>
-                <h5 class="blog__title">
-                    Wpływ witaminy C na nasze zdrowie
-                </h5>
-                <p class="blog__excerpt">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                </p>
-                <button class="product__addToCartBtn">
-                    Czytaj dalej
-                    <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
-                </button>
-            </a>
-            <a href="" class="product product--blog">
-                <figure class="blog__imgWrapper">
-                    <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/blog.png'; ?>" alt="blog" />
-                </figure>
-                <h5 class="blog__title">
-                    Wpływ witaminy C na nasze zdrowie
-                </h5>
-                <p class="blog__excerpt">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                </p>
-                <button class="product__addToCartBtn">
-                    Czytaj dalej
-                    <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
-                </button>
-            </a>
-            <a href="" class="product product--blog">
-                <figure class="blog__imgWrapper">
-                    <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/blog.png'; ?>" alt="blog" />
-                </figure>
-                <h5 class="blog__title">
-                    Wpływ witaminy C na nasze zdrowie
-                </h5>
-                <p class="blog__excerpt">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                </p>
-                <button class="product__addToCartBtn">
-                    Czytaj dalej
-                    <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
-                </button>
-            </a>
+            <?php
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => 3
+            );
+
+            $post_query = new WP_Query($args);
+
+            if($post_query->have_posts() ) {
+                while($post_query->have_posts() ) {
+                    $post_query->the_post();
+                    $post_id = get_the_ID();
+                    $category_object = get_the_category($post_id);
+                    $category_name = $category_object[0]->name;
+                    ?>
+
+                    <a href="<?php the_permalink() ?>" class="product product--blog">
+                        <figure class="blog__imgWrapper">
+                            <?php
+                                echo get_the_post_thumbnail();
+                            ?>
+                        </figure>
+                        <h5 class="blog__title">
+                            <?php
+                            echo the_title();
+                            ?>
+                        </h5>
+                        <p class="blog__excerpt">
+                            <?php
+                                echo get_field('zajawka');
+                            ?>
+                        </p>
+                        <button class="product__addToCartBtn">
+                            Czytaj dalej
+                            <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
+                        </button>
+                    </a>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </section>
 
@@ -584,3 +562,113 @@ function metahuman_footer() {
 }
 
 add_action('storefront_footer', 'metahuman_footer', 14);
+
+function metahuman_single_post() {
+    ?>
+    <figure class="single__imgWrapper w">
+        <img class="img" src="<?php echo get_field('glowne_zdjecie'); ?>" alt="title" />
+    </figure>
+    <h2 class="single__title w">
+        <?php echo the_title(); ?>
+    </h2>
+    <main class="single flex w">
+        <article class="single__article">
+            <main class="single__content">
+                <?php
+                    the_content();
+                ?>
+            </main>
+        </article>
+        <aside class="single__aside d-desktop">
+            <h4 class="single__aside__header">
+                Ostatnie wpisy
+            </h4>
+            <div class="single__aside__text">
+                <?php
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 4
+                );
+
+                $post_query = new WP_Query($args);
+
+                if($post_query->have_posts() ) {
+                    while($post_query->have_posts() ) {
+                        $post_query->the_post();
+                        ?>
+                        <a class="blog__articles__item" href="<?php the_permalink() ?>">
+                            <?php echo the_title(); ?>
+                        </a>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+            <a class="single__aside__btn" href="/blog">
+                Wszystkie wpisy
+                <img class="icon" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="blog" />
+            </a>
+            <h4 class="single__aside__header">
+                Obserwuj nas w social media
+            </h4>
+            <div class="flex socialMediaWrapper">
+                <a href="" class="socialMedia">
+                    <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/facebook.svg'; ?>" alt="facebook" />
+                </a>
+                <a href="" class="socialMedia">
+                    <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/instagram.svg'; ?>" alt="facebook" />
+                </a>
+            </div>
+        </aside>
+    </main>
+    <section class="single__blogSection w flex">
+        <h3 class="single__blogSection__header">
+            Przeczytaj również
+        </h3>
+        <main class="blog__articles flex">
+            <?php
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => 3
+            );
+
+            $post_query = new WP_Query($args);
+
+            if($post_query->have_posts() ) {
+                while($post_query->have_posts() ) {
+                    $post_query->the_post();
+                    $post_id = get_the_ID();
+                    $category_object = get_the_category($post_id);
+                    $category_name = $category_object[0]->name;
+                    ?>
+                    <a href="<?php the_permalink() ?>" class="product product--blog">
+                        <figure class="blog__imgWrapper">
+                            <?php
+                            echo get_the_post_thumbnail();
+                            ?>
+                        </figure>
+                        <h5 class="blog__title">
+                            <?php
+                            echo the_title();
+                            ?>
+                        </h5>
+                        <p class="blog__excerpt">
+                            <?php
+                            echo get_field('zajawka');
+                            ?>
+                        </p>
+                        <button class="product__addToCartBtn">
+                            Czytaj dalej
+                            <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
+                        </button>
+                    </a>
+                    <?php
+                }
+            }
+            ?>
+        </main>
+    </section>
+    <?php
+}
+
+add_action('storefront_single_post', 'metahuman_single_post', 14);
