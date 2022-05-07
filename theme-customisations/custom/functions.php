@@ -42,7 +42,7 @@ function metahuman_header() {
                 <img class="icon icon--user" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/user.svg'; ?>" alt="panel-klienta" />
                 Panel klienta
             </a>
-            <a href="" class="topBar__link flex">
+            <a href="<?php echo wc_get_cart_url(); ?>" class="topBar__link flex">
                 <img class="icon icon--cart" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/cart.svg'; ?>" alt="koszyk" />
                 Twój koszyk (0.00 PLN)
             </a>
@@ -50,7 +50,7 @@ function metahuman_header() {
     </aside>
     <header class="topBar topBar--mobile d-mobile flex">
         <div class="center">
-            <a href=".." class="topBar__logoWrapper">
+            <a href="<?php echo get_home_url(); ?>" class="topBar__logoWrapper">
                 <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/logo-footer.png'; ?>" alt="meta-human" />
             </a>
         </div>
@@ -61,7 +61,7 @@ function metahuman_header() {
             <a class="topBar__btn" href="..">
                 <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/user.svg'; ?>" alt="panel-klienta" />
             </a>
-            <a class="topBar__btn" href="..">
+            <a class="topBar__btn" href="<?php echo wc_get_cart_url(); ?>">
                 <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/cart.svg'; ?>" alt="koszyk" />
             </a>
         </div>
@@ -121,7 +121,7 @@ function metahuman_header() {
         </div>
     </header>
     <header class="w flex topHeader d-desktop">
-        <a href=".." class="topHeader__logoWrapper">
+        <a href="<?php echo get_home_url(); ?>" class="topHeader__logoWrapper">
             <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/logo.png'; ?>" alt="meta-human" />
         </a>
         <label class="topHeader__search">

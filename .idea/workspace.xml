@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29dc53d1-dc1a-4c1a-93f1-434550d47b1a" name="Default Changelist" comment="" />
+    <list default="true" id="29dc53d1-dc1a-4c1a-93f1-434550d47b1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme-customisations/custom/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/theme-customisations/custom/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme-customisations/custom/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/theme-customisations/custom/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/theme-customisations/custom/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -78,7 +82,10 @@
       <workItem from="1651674220722" duration="967000" />
       <workItem from="1651704771185" duration="4742000" />
       <workItem from="1651765500391" duration="5680000" />
-      <workItem from="1651775968258" duration="10487000" />
+      <workItem from="1651775968258" duration="18624000" />
+      <workItem from="1651832058307" duration="409000" />
+      <workItem from="1651914214399" duration="4216000" />
+      <workItem from="1651918993732" duration="2780000" />
     </task>
     <servers />
   </component>
@@ -96,5 +103,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1651832469699">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1651832469699" />
+    <state x="-1304" y="240" key="run.anything.popup" timestamp="1651915281261">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1304" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1651915281261" />
   </component>
 </project>
