@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29dc53d1-dc1a-4c1a-93f1-434550d47b1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/theme-customisations/custom/templates/woocommerce/checkout/thankyou.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theme-customisations/custom/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/theme-customisations/custom/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theme-customisations/custom/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/theme-customisations/custom/style.css" afterDir="false" />
@@ -66,6 +67,7 @@
       <recent name="C:\Users\sajmo\Desktop\Programowanie\Projekty\metahuman\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sajmo\Desktop\Programowanie\Projekty\metahuman\theme-customisations\custom\templates\woocommerce" />
       <recent name="C:\Users\sajmo\Desktop\Programowanie\Projekty\metahuman" />
       <recent name="C:\Users\sajmo\Desktop\Programowanie\Projekty\metahuman\html" />
     </key>
@@ -85,7 +87,9 @@
       <workItem from="1651775968258" duration="18624000" />
       <workItem from="1651832058307" duration="409000" />
       <workItem from="1651914214399" duration="4216000" />
-      <workItem from="1651918993732" duration="2780000" />
+      <workItem from="1651918993732" duration="3579000" />
+      <workItem from="1651922888319" duration="9000" />
+      <workItem from="1651951605732" duration="6006000" />
     </task>
     <servers />
   </component>
@@ -103,15 +107,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1651832469699">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1651832469699" />
-    <state x="-1304" y="240" key="run.anything.popup" timestamp="1651915281261">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1304" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1651915281261" />
   </component>
 </project>

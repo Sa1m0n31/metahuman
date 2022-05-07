@@ -672,3 +672,20 @@ function metahuman_single_post() {
 }
 
 add_action('storefront_single_post', 'metahuman_single_post', 14);
+
+function metahuman_account_dashboard() {
+    ?>
+
+    <div class="dashboard">
+        <h2 class="dashboard__header">
+            Witaj w Twoim panelu klienta!
+        </h2>
+        <h3 class="dashboard__subheader">
+            Sprawdź statusy swoich zamówień lub edytuj swoje dane wybierając odpowiednie opcje z menu.
+        </h3>
+    </div>
+
+<?php
+}
+
+add_action('woocommerce_account_dashboard', 'metahuman_account_dashboard', 15);
