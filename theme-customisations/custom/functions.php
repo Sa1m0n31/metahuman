@@ -7,6 +7,8 @@
  * @since    1.0.0
  */
 
+add_theme_support( 'woocommerce' );
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -14,7 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /* Enqueue scripts */
 function metahuman_scripts() {
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap', false );
-    wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/assets/js/main.js', array(), 1.0, false);
+    wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/assets/js/main.js', array('jquery'), 1.0, false);
+    wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), 1.0, false);
+
+    wp_localize_script( 'main-js', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -38,13 +43,13 @@ function metahuman_header() {
             Napisz do nas: sales@metahuman.com.pl
         </a>
         <div class="topBar__right flex">
-            <a href="" class="topBar__link flex">
+            <a href="/moje-konto" class="topBar__link flex">
                 <img class="icon icon--user" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/user.svg'; ?>" alt="panel-klienta" />
                 Panel klienta
             </a>
             <a href="<?php echo wc_get_cart_url(); ?>" class="topBar__link flex">
                 <img class="icon icon--cart" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/cart.svg'; ?>" alt="koszyk" />
-                Twój koszyk (0.00 PLN)
+                Twój koszyk (<?php echo WC()->cart->cart_contents_total ?> PLN)
             </a>
         </div>
     </aside>
@@ -76,7 +81,7 @@ function metahuman_header() {
 
             <ul class="mobileMenu__list">
                 <li class="topHeader__menu__item">
-                    <a class="mobileMenu__header" href="..">
+                    <a class="mobileMenu__header" href="/sklep">
                         Sklep
                     </a>
                     <ul class="topHeader__menu__submenu">
@@ -125,8 +130,7 @@ function metahuman_header() {
             <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/logo.png'; ?>" alt="meta-human" />
         </a>
         <label class="topHeader__search">
-            <input class="input"
-                   placeholder="Wyszukaj produkt..." />
+                <?php echo do_shortcode('[fibosearch]'); ?>
         </label>
         <ul class="topHeader__menu flex">
             <li class="topHeader__menu__item">
@@ -689,3 +693,54 @@ function metahuman_account_dashboard() {
 }
 
 add_action('woocommerce_account_dashboard', 'metahuman_account_dashboard', 15);
+
+/**
+ * Change number of products that are displayed per page (shop page)
+ */
+
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+function new_loop_shop_per_page( $cols )
+{
+    // $cols contains the current number of products per page based on the value stored on Options -> Reading
+    // Return the number of products you wanna show per page.
+    $cols = 3;
+
+    return $cols;
+}
+
+function sort_products_by_price() {
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => 12
+    );
+    $loop = new WP_Query( $args );
+    $products = '';
+
+    if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+            $loop->the_post();
+            global $product;
+            $full_excerpt = $product->get_short_description();
+            $excerpt = '';
+            if(strlen($full_excerpt) > 100) {
+                $excerpt = substr($full_excerpt, 0, 100) . "...";
+            }
+            else {
+                $excerpt = $full_excerpt;
+            }
+
+            $salida .= '<li>';
+
+            $salida .= '</li>';
+        }
+
+    } else {
+        $products = 'No products found';
+    }
+
+    echo $salida;
+    wp_die();
+}
+
+add_action( 'wp_ajax_nopriv_sort_products_by_price', 'sort_products_by_price' );
+add_action( 'wp_ajax_sort_products_by_price', 'sort_products_by_price' );
