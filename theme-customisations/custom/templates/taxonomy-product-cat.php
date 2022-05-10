@@ -9,6 +9,87 @@ get_header();
             <h2 class="section__header">
                 Sklep
             </h2>
+
+	        <?php
+	        $sort = 0;
+	        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	        if($_GET['sort'] == 'new') {
+		        $sort = 0;
+		        $loop = new WP_Query( array(
+			        'post_type' => 'product',
+			        'post_status' => 'publish',
+			        'orderby' => 'publish_date',
+			        'order' => 'asc',
+			        'tax_query'      => array( array(
+				        'taxonomy'   => 'product_cat',
+				        'field'      => 'term_id',
+				        'terms'      => array( get_queried_object()->term_id ),
+			        ) ),
+			        'paged' => $paged
+		        ));
+	        }
+	        else if($_GET['sort'] == 'price-asc') {
+		        $sort = 1;
+		        $loop = new WP_Query( array(
+			        'post_type' => 'product',
+			        'post_status' => 'publish',
+			        'orderby'   => 'meta_value_num',
+			        'meta_key'  => '_price',
+			        'order' => 'asc',
+			        'tax_query'      => array( array(
+				        'taxonomy'   => 'product_cat',
+				        'field'      => 'term_id',
+				        'terms'      => array( get_queried_object()->term_id ),
+			        ) ),
+			        'paged' => $paged
+		        ));
+	        }
+	        else if($_GET['sort'] == 'price-desc') {
+		        $sort = 2;
+		        $loop = new WP_Query( array(
+			        'post_type' => 'product',
+			        'post_status' => 'publish',
+			        'orderby'   => 'meta_value_num',
+			        'meta_key'  => '_price',
+			        'order' => 'desc',
+			        'tax_query'      => array( array(
+				        'taxonomy'   => 'product_cat',
+				        'field'      => 'term_id',
+				        'terms'      => array( get_queried_object()->term_id ),
+			        ) ),
+			        'paged' => $paged
+		        ));
+	        }
+	        else if($_GET['sort'] == 'by-name') {
+		        $sort = 3;
+		        $loop = new WP_Query( array(
+			        'post_type' => 'product',
+			        'post_status' => 'publish',
+			        'orderby'   => 'title',
+			        'order' => 'asc',
+			        'tax_query'      => array( array(
+				        'taxonomy'   => 'product_cat',
+				        'field'      => 'term_id',
+				        'terms'      => array( get_queried_object()->term_id ),
+			        ) ),
+			        'paged' => $paged
+		        ));
+	        }
+	        else {
+		        $loop = new WP_Query( array(
+			        'post_type' => 'product',
+			        'post_status' => 'publish',
+			        'tax_query'      => array( array(
+				        'taxonomy'   => 'product_cat',
+				        'field'      => 'term_id',
+				        'terms'      => array( get_queried_object()->term_id ),
+			        ) ),
+			        'paged' => $paged
+		        ));
+	        }
+
+	        ?>
+
             <div class="filters">
                 <h3 class="filters__header">
                     Kategoria:
@@ -53,29 +134,22 @@ get_header();
                 <h3 class="filters__header">
                     Sortuj według:
                 </h3>
-                <button class="filters__sort" onclick="sortByPriceAsc()">
+                <a class="<?php if($sort == 0) echo 'filters__sort filters__sort--selected'; else echo 'filters__sort'; ?>" href="./?sort=new">
+                    Najnowsze
+                </a>
+                <a class="<?php if($sort == 1) echo 'filters__sort filters__sort--selected'; else echo 'filters__sort'; ?>" href="./?sort=price-asc">
                     Cena (od najniższej)
-                </button>
-                <button class="filters__sort" onclick="sortByPriceDesc()">
+                </a>
+                <a class="<?php if($sort == 2) echo 'filters__sort filters__sort--selected'; else echo 'filters__sort'; ?>" href="./?sort=price-desc">
                     Cena (od najwyższej)
-                </button>
-                <button class="filters__sort" onclick="sortByName()">
+                </a>
+                <a class="<?php if($sort == 3) echo 'filters__sort filters__sort--selected'; else echo 'filters__sort'; ?>" href="./?sort=by-name">
                     Lista A-Z
-                </button>
+                </a>
             </div>
-            <div class="flex">
+            <div class="flex productsWrapper">
 
                 <?php
-
-                $loop = new WP_Query(array(
-                    'post_type' => 'product',
-                    'post_status' => 'publish',
-                    'tax_query'      => array( array(
-                        'taxonomy'   => 'product_cat',
-                        'field'      => 'term_id',
-                        'terms'      => array( get_queried_object()->term_id ),
-                    ) )
-                ));
 
                 if($loop->have_posts()) {
                     while($loop->have_posts()) {
