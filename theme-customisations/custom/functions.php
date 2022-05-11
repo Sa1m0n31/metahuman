@@ -220,7 +220,7 @@ function metahuman_homepage() {
         <h2 class="section__header">
             Bestsellery
         </h2>
-        <div class="flex">
+        <div class="flex productsRow">
 
             <?php
             $loop = new WP_Query( array(
@@ -275,70 +275,54 @@ function metahuman_homepage() {
         <h2 class="section__header">
             Promocje
         </h2>
-        <div class="flex">
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
+        <div class="flex productsRow">
+
+		    <?php
+		    $loop = new WP_Query( array(
+			    'post_type' => 'product',
+			    'post_status' => 'publish',
+			    'posts_per_page' => 3,
+			    'product_cat' => 'promocje'
+		    ));
+		    if($loop->have_posts()) {
+			    while($loop->have_posts()) {
+				    $loop->the_post();
+				    global $product;
+				    ?>
+                    <div class="product">
+                        <a class="flex" href="<?php echo get_permalink( $product->get_id() ); ?>">
+                            <figure class="product__imgWrapper">
+                                <img class="img" src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" alt="produkt" />
+                            </figure>
+                            <div class="product__right">
+                                <h3 class="product__name">
+								    <?php echo the_title(); ?>
+                                </h3>
+                                <h4 class="product__price">
+								    <?php echo $product->get_price_html(); ?>
+                                </h4>
+                                <p class="product__desc">
+								    <?php
+								    $full_excerpt = $product->get_short_description();
+								    if(strlen($full_excerpt) > 100) {
+									    echo substr($full_excerpt, 0, 100) . '...';
+								    }
+								    else {
+									    echo $full_excerpt;
+								    }
+								    ?>
+                                </p>
+                            </div>
+                        </a>
+                        <span class="addToCartBtnWrapper">
+	                        <?php woocommerce_template_loop_add_to_cart($loop->post, $product); ?>
+                        </span>
                     </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
-                    </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
-            <a href=".." class="product">
-                <div class="flex">
-                    <figure class="product__imgWrapper">
-                        <img class="img" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/produkt.png'; ?>" alt="produkt" />
-                    </figure>
-                    <div class="product__right">
-                        <h3 class="product__name">
-                            Elite ATP
-                        </h3>
-                        <h4 class="product__price">
-                            89.00 PLN
-                        </h4>
-                        <p class="product__desc">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        </p>
-                    </div>
-                </div>
-                <button class="product__addToCartBtn">
-                    Kupuję
-                </button>
-            </a>
+				    <?php
+			    }
+			    wp_reset_postdata();
+		    }
+		    ?>
         </div>
     </section>
 
@@ -521,7 +505,7 @@ function metahuman_footer() {
                 <a href="/polityka-prywatnosci" class="footer__col__link">
                     Polityka prywatności
                 </a>
-                <a href="/reklamacje-i-zwroty" class="footer__col__link">
+                <a href="zwroty-i-reklamacje" class="footer__col__link">
                     Reklamacje i zwroty
                 </a>
             </div>
@@ -919,62 +903,3 @@ function metahuman_before_single_product_summary() {
 }
 
 add_action('woocommerce_before_single_product_summary', 'metahuman_before_single_product_summary');
-
-function metahuman_blog_page() {
-    ?>
-        <?php
-    if(is_page('Artykuły')) {
-
-        ?>
-        <section class="w section section--blogPage">
-            <div class="flex productsWrapper">
-			    <?php
-			    $args = array(
-				    'post_type' => 'post',
-				    'posts_per_page' => 100
-			    );
-
-			    $post_query = new WP_Query($args);
-
-			    if($post_query->have_posts() ) {
-				    while($post_query->have_posts() ) {
-					    $post_query->the_post();
-					    $post_id = get_the_ID();
-					    $category_object = get_the_category($post_id);
-					    $category_name = $category_object[0]->name;
-					    ?>
-
-                        <a href="<?php the_permalink() ?>" class="product product--blog">
-                            <figure class="blog__imgWrapper">
-							    <?php
-							    echo get_the_post_thumbnail();
-							    ?>
-                            </figure>
-                            <h5 class="blog__title">
-							    <?php
-							    echo the_title();
-							    ?>
-                            </h5>
-                            <p class="blog__excerpt">
-							    <?php
-							    echo get_field('zajawka');
-							    ?>
-                            </p>
-                            <span class="addToCartBtnWrapper">
-                                <button class="product__addToCartBtn">
-                                    Czytaj dalej
-                                    <img class="icon icon--next" src="<?php echo get_home_url() . '/wp-content/uploads/2022/05/arrow-next.svg'; ?>" alt="dalej" />
-                                </button>
-                            </span>
-                        </a>
-					    <?php
-				    }
-			    }
-			    ?>
-            </div>
-        </section>
-<?php
-    }
-}
-
-add_action('the_content', 'metahuman_blog_page');

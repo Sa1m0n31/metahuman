@@ -94,7 +94,6 @@ const toggleCategories = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const archivePage = document.querySelector('.archive');
-    console.log(archivePage);
     if(archivePage) {
         archivePage.addEventListener('click', (event) => {
             console.log('click');
@@ -103,30 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
-const sortByPrice = () => {
-    console.log('sort');
-    jQuery.ajax({
-        type: "post",
-        dataType: "json",
-        url: "/wp-admin/admin-ajax.php", //this is wordpress ajax file which is already avaiable in wordpress
-        data: {
-            action: 'sort_products_by_price', //this value is first parameter of add_action,
-            id: 4
-        },
-        success: function(msg){
-            console.log(msg);
-            const content = msg.responseText;
-            console.log(content);
-            const el = document.querySelector('.productsWrapper');
-            if(el) {
-                el.innerHTML = content;
-            }
-        },
-        error: function(err) {
-            console.log('err');
-            console.log(err);
-        }
-    });
-}
+    /* Contact translation */
+    const labelSpans = Array.from(document.querySelectorAll('.grunion-field-label>span'));
+    const submitBtn = document.querySelector('.contact__form .contact-submit button[type=submit]');
+
+    if(labelSpans?.length) {
+        labelSpans.forEach((item) => {
+            item.textContent = '*';
+        });
+    }
+    if(submitBtn) {
+        submitBtn.textContent = 'Wyślij wiadomość';
+    }
+});

@@ -32,6 +32,7 @@ body, html {
 .storefront-handheld-footer-bar,
 .widget-area,
 .site-info,
+.wcspc-count-bottom-left,
 .site-header {
     display: none !important;
 }
@@ -81,6 +82,7 @@ ul {
     padding: 20px 0 5px;
 }
 
+.page-template-default .entry-content,
 .woocommerce-account .entry-content,
 .woocommerce-checkout .entry-content,
 .cart-collaterals,
@@ -775,6 +777,7 @@ input:not(.woocommerce-cart input, .wcspc-item-qty input),
     font-size: 12px;
     color: #747474;
     font-weight: 400;
+    margin-bottom: 0;
     text-align: center;
 }
 
@@ -1692,11 +1695,12 @@ address {
     display: none !important;
 }
 
-.page-template-default .entry-title {
+.page-template-default .entry-title:not(.section__header) {
     font-size: 26px;
     text-transform: uppercase;
 }
 
+.section--contact,
 .page-template-default .section--blogPage {
     margin-top: 20px;
 }
@@ -1752,7 +1756,229 @@ address {
     color: #fff !important;
 }
 
+.page-template-default .entry-content {
+    margin-bottom: 0 !important;
+}
+
+.section--contact {
+    align-items: flex-start;
+}
+
+.contact__data__header {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.contact__data__subheader {
+    font-size: 18px;
+    border: none !important;
+}
+
+.contact__data__address,
+.contact__data__address * {
+    color: #000 !important;
+    font-size: 15px;
+}
+
+.contact__data, .contact__form {
+    width: 45%;
+}
+
+.grunion-field-label {
+    color: #2c2d33;
+    font-weight: 400 !important;
+    font-size: 14px;
+}
+
+.grunion-field-wrap textarea,
+.grunion-field-wrap input {
+    border: 1px solid #d8d8d8 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+    height: 40px !important;
+    background: transparent !important;
+    resize: none !important;
+}
+
+.grunion-field-wrap textarea:focus,
+.grunion-field-wrap textarea:active,
+.grunion-field-wrap input:focus,
+.grunion-field-wrap input:active {
+    border-color: #5a257f !important;
+}
+
+.grunion-field-wrap textarea {
+    height: 150px !important;
+}
+
+.contact__form .contact-submit button {
+    width: 100%;
+    background: #5a257f !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    transition: .2s all;
+}
+
+.contact__form .contact-submit button:hover {
+    background: #4B146D !important;
+}
+
+.contact-form-submission {
+    border: none !important;
+    position: relative;
+}
+
+.contact-form-submission p,
+#contact-form-81 > h3 {
+    display: none !important;
+}
+
+.contact-form-submission::before {
+    content: "Dziękujemy za kontakt! Twój formularz został wysłany. Odpowiemy najszybciej jak to możliwe :)";
+    position: absolute;
+    font-style: normal;
+    top: 0;
+    left: 0;
+    text-align: left;
+}
+
+.metahuman__headImage {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.metahuman__headImage .img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 150%;
+    max-height: 150%;
+}
+
+.metahuman__section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #D8D8D8;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.metahuman__section:last-of-type {
+    border-bottom: none;
+}
+
+.metahuman__section__imgWrapper {
+    width: 30%;
+}
+
+.metahuman__section__imgWrapper .img {
+    width: 100%;
+}
+
+.metahuman__section__content {
+    width: 65%;
+}
+
+.metahuman__section__header {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.metahuman__section__text {
+    max-width: 600px;
+}
+
+.metahuman__section__text,
+.metahuman__section__text * {
+    font-size: 15px;
+    color: #000;
+    width: 100%;
+}
+
+.metahuman__section:nth-of-type(even) * {
+    text-align: right;
+}
+
+.metahuman__section:nth-of-type(even) .metahuman__section__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.price > del,
+.product__price > del {
+    color: #777777 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    display: block !important;
+}
+
+.price > del {
+    font-size: 15px !important;
+}
+
+.productsRow {
+    align-items: flex-start;
+}
+
+.product__price > del ~ ins {
+    color: #D50000 !important;
+}
+
+.price ins {
+    font-weight: 700;
+}
+
+.price del+ins {
+    margin-left: 0;
+}
+
+.onsale {
+    background: #D50000 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.woocommerce-info {
+    background: #5a257f !important;
+}
+
+.woocommerce-form-coupon button {
+    background: #5a257f;
+    color: #fff;
+    border-radius: 5px;
+    height: 40px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    transition: .2s all;
+}
+
+.woocommerce-form-coupon button:hover {
+    background: #4B146D !important;
+    color: #fff !important;
+}
+
+.woocommerce-form-coupon input {
+    border-radius: 5px;
+}
+
+.woocommerce-checkout .woocommerce .woocommerce-error,
+.woocommerce-checkout .woocommerce .woocommerce-message {
+    margin-top: -20px;
+}
+
 @media(max-width: 1600px) {
+    .page-template-default .entry-content,
     .woocommerce-account .entry-content,
     .woocommerce-checkout .entry-content,
     .cart-collaterals,
@@ -1784,6 +2010,19 @@ address {
         left: unset;
         margin: 20px auto;
         width: 48%;
+    }
+
+    .contact__data__header {
+        font-size: 24px;
+    }
+
+    .contact__data__subheader {
+        font-size: 16px;
+    }
+
+    .contact__data__address *,
+    .contact__data__address {
+        font-size: 14px;
     }
 
     .filters__sort {
@@ -2106,6 +2345,78 @@ address {
 
     .d-mobile {
         display: block !important;
+    }
+
+    @media(min-width: 420px) {
+        .onsale {
+            display: block;
+            margin-top: 30px;
+            width: fit-content;
+            width: -moz-max-content;
+        }
+    }
+
+    .metahuman__section__header {
+        font-size: 17px !important;
+        margin-bottom: 5px;
+        text-align: center !important;
+    }
+
+    .metahuman__section__content {
+        order: 1;
+    }
+
+    .metahuman__headImage {
+        margin-bottom: 20px;
+    }
+
+    .metahuman__section:nth-of-type(even) .metahuman__section__content {
+        align-items: center;
+    }
+
+    .metahuman__section__text,
+    .metahuman__section__text * {
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+
+    .metahuman__section {
+        flex-direction: column;
+    }
+
+    .metahuman__section > * {
+        width: 100%;
+    }
+
+    .metahuman__section__imgWrapper {
+        margin-top: 15px;
+        order: 2;
+    }
+
+    .contact-form-submission::before {
+        font-size: 14px;
+    }
+
+    .section--contact {
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .contact__data, .contact__form {
+        width: 100%;
+    }
+
+    .contact__form {
+        margin-top: 40px;
+    }
+
+    .contact__data__header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .contact__data__subheader {
+        padding-top: 0 !important;
     }
 
     .recomendations .product {
